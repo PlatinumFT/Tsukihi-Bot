@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
     let isPosition = botRole.comparePositionTo(myRole);
     if(isPosition <= 0) return message.channel.send(embedFail("This role is higher than me, I cannot add this role!"));
     let isUserPosition = userRole.comparePositionTo(userRole);
-    if(isUserPosition <= 0) return message.channel.send(embedFail("This role is higher than you, you cannot add this role!"));
+    if(isUserPosition >= 0) return message.channel.send(embedFail("This role is higher than you, you cannot add this role!"));
 
     let res = await query(`SELECT * FROM roles WHERE role_id='${myRole.id}';`);
 
