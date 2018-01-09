@@ -31,9 +31,9 @@ module.exports.run = async (bot, message, args) => {
     let userRole = message.guild.members.get(message.author.id).highestRole;
     
     let isPosition = botRole.comparePositionTo(myRole);
-    if(isPosition <= 0) return message.channel.send(embedFail("This role is higher than me, I cannot add this role!"));
-    let isUserPosition = userRole.comparePositionTo(userRole);
-    if(isUserPosition >= 0) return message.channel.send(embedFail("This role is higher than you, you cannot add this role!"));
+    if(isPosition <= 0) return message.channel.send(embedFail("This role is higher or equal to me, I cannot add this role!"));
+    let isUserPosition = userRole.comparePositionTo(myRole);
+    if(isUserPosition <= 0) return message.channel.send(embedFail("This role is higher or equal to you, you cannot add this role!"));
 
     let res = await query(`SELECT * FROM roles WHERE role_id='${myRole.id}';`);
 
