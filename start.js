@@ -8,6 +8,6 @@ switch(index) {
         bot.run();
         break;
     case 1:
-        bot.database();
+        bot.migration();
         break;
 }
