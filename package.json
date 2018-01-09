@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/PlatinumFT/Tsukihi-Bot#readme",
   "dependencies": {
+    "colors": "^1.1.2",
     "discord.js": "^11.2.1",
-    "pg": "^7.4.1"
+    "pg": "^7.4.1",
+    "readline-sync": "^1.4.7"
   }
 }
