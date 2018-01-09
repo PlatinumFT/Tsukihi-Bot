@@ -1,5 +1,6 @@
 
 module.exports = async message => {
+    let query = client.db;
 
     if(message.author.bot) return;
     const client = message.client;
