@@ -11,6 +11,8 @@ module.exports = async message => {
     let messageArray = message.content.split(" ");
     let args = messageArray.slice(1);
     let command = messageArray[0];
+    let isOwner = false;
+    if(settings.owner_id == message.author.id) isOwner = true;
 
     var res = await query(`SELECT * FROM guilds where guild_id='${message.guild.id}'`);
     if(res[0]) prefix2 = res[0].prefix;

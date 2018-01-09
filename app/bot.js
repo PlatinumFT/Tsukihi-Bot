@@ -19,5 +19,6 @@ module.exports = {
         await query(`CREATE TABLE IF NOT EXISTS settings(token varchar, prefix varchar(10))`);
         await query('CREATE TABLE IF NOT EXISTS roles(guild_id varchar(30), role_id varchar(30))');
         await query('CREATE TABLE IF NOT EXISTS user_roles(guild_id varchar(30), user_id varchar(30), role_id varchar(30))');
+        await query(`ALTER TABLE settings ADD COLUMN owner_id varchar(30)`);
     }
 }
