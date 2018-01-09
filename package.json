@@ -1,0 +1,23 @@
+{
+  "name": "tsukihi-bot",
+  "version": "1.0.0",
+  "description": "A Discord.js bot.",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PlatinumFT/Tsukihi-Bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PlatinumFT/Tsukihi-Bot/issues"
+  },
+  "homepage": "https://github.com/PlatinumFT/Tsukihi-Bot#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "pg": "^7.4.1"
+  }
+}
