@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
         count+=1;
     })
 
-    owners = '166995790416314370';
+    owners = client.settings.owner_id;
 
     let embed = new Discord.RichEmbed()
         .setAuthor(`${target.username} by Platinum#2109`, target.displayAvatarURL)
