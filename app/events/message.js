@@ -3,8 +3,8 @@ module.exports = async message => {
     let query = client.db;
 
     if(message.author.bot) return;
-    const client = message.client;
     let cooldown = client.cooldown;
+    const client = message.client;
     let settings = client.settings;
     var prefix = settings.prefix;
     var prefix2 = null;
