@@ -3,7 +3,7 @@ const Discord = module.require("discord.js");
 module.exports.run = async (bot, message, args, db) => {
     const query = bot.db;
     
-    let res = await query.qall(`SELECT * FROM roles WHERE guild_id = '${message.guild.id}'`);
+    let res = await query(`SELECT * FROM roles WHERE guild_id = '${message.guild.id}'`);
     let assignNames = "";
 
         var numbRoles = res.length;
