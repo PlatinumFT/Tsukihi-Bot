@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
         .setColor(guildMem.displayColor)
         .setThumbnail(target.displayAvatarURL)
         .setDescription(`Serving ${client.users.size} users in ${client.guilds.size} guilds.`)
-        .addField('Ram usage', `${os.freemem()/1048576}MB`, true)
+        .addField('Ram usage', `${(os.freemem()/1048576).toFixed(0)}MB`, true)
         .addField('Uptime', `${hours}:${minutes}:${seconds}.${milliseconds}`, true)
         .addField('Bot owners', owners)
         .addField(`Roles [${count}]`, roles)
