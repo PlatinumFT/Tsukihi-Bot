@@ -1,14 +1,42 @@
+const Discord = module.require("discord.js");
+const moment = require("moment");
+
 exports.run = async (client, message, args) => {
-    let str = ""
-    client.guilds.forEach(e => {
-        str+=`${e.name} - ${e.id}\n`;
-    });
-    return message.channel.send(`**Guilds that I am currently in:**\n${str}`)
+    if (!args[1]) {
+        if(!args[0]) guildID = message.guild.id;
+        else guildID = args[0];
+        let target = client.guilds.get(guildID);
+        let owner = target.members.get(target.ownerID);
+        let emojis = 0;
+        target.emojis.forEach(e => {
+            emojis+=1;
+        })
+        let embed = new Discord.RichEmbed()
+        .setAuthor(`Guild info for ${target.name}`)
+        .setDescription(`ID: ${target.id}`)
+        .setColor('#FFFFFF')
+        .setThumbnail(target.displayAvatarURL)
+        .addField("Owner", `${owner.user.username}#${owner.user.discriminator}`, true)
+        .addField("Reigon", `${target.region}`, true)
+        .addField("Created", moment(target.createdTimestamp).format('MMMM Do YYYY, h:mm:ss a'), true)          
+        .addField("Emotes count", emojis)          
+        .addField("Members", `${target.memberCount}`)
+        .setTimestamp();
+
+        message.channel.send(embed);
+    } else if(args[1] = "users") {
+        let target = client.guilds.get(args[0]);
+        let users = "";
+        target.members.forEach(e => {
+            users+=`\`${e.user.username}#${e.user.discriminator}\`, `;
+        });
+        return message.channel.send(`**List of users in ${target.name}**\n${users}`);
+    }
 }
 
 exports.help = {
-    name: "checkguilds",
-    description: "Checks the guilds that I am in.",
-    usage: "checkguilds",
+    name: "guildinfo",
+    description: "Checks a guild.",
+    usage: "guildinfo id",
     type: "owner"    
 }
