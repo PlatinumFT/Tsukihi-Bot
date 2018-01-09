@@ -1,6 +1,6 @@
 exports.run = async (client, message, args) => {
     const query = client.db;
-    var res = await query(`SELECT * FROM guilds where guild_id=${message.guild.id}`);  
+    var res = await query(`SELECT * FROM guilds where guild_id='${message.guild.id}'`);  
     if(!args[0]) {
         if(res) {
             return message.channel.send(`Current prefix is: ${res.prefix}`)
