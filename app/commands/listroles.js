@@ -3,21 +3,24 @@ const Discord = module.require("discord.js");
 module.exports.run = async (bot, message, args, db) => {
     const query = bot.db;
     
-    let res = await query(`SELECT * FROM user_roles WHERE guild_id = '${message.guild.id}'`);
+    let res = await query.qall(`SELECT * FROM roles WHERE guild_id = '${message.guild.id}'`);
     let assignNames = "";
 
         var numbRoles = res.length;
-        if (res.length == 0) assignNames = "There are no user assignable roles."
+        if (res.length == 0) assignNames = "There are no self assignable roles."
         for (i = 0; i < numbRoles; i++) {
             let myRole = message.guild.roles.find("id", res[i].role_id);
-            let myUser = message.guild.members.find("id", res[i].user_id);
-            assignNames+=`${myUser.user.username}#${myUser.user.discriminator} - ${myRole.name}\n`;
+            if(i == numbRoles-1) {
+                assignNames+=myRole.name + "."
+        } else {
+            assignNames+=myRole.name + ", ";
+        }
         }
 
         let guildMem = message.guild.members.get(client.user.id);
 
         let embed = new Discord.RichEmbed()
-        .setAuthor(`List of assigned roles for ${message.guild.name} - ${res.length}`, message.guild.iconURL)
+        .setAuthor(`List of roles for ${message.guild.name}`, message.guild.iconURL)
         .setColor(guildMem.displayColor)
         .addField(`Roles`, `${assignNames}`)
 
@@ -25,8 +28,8 @@ module.exports.run = async (bot, message, args, db) => {
 }
 
 module.exports.help = {
-    name: "listuserroles",
+    name: "listroles",
     description: "Lists self assignable roles.",
-    usage: `listuserroles`,
+    usage: `listroles`,
     type: "roles"    
 }
