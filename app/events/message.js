@@ -2,12 +2,11 @@
 module.exports = async message => {
 
     if(message.author.bot) return;
-    let cooldown = client.cooldown;
-    let query = client.db;
-    const client = message.client;
-    let settings = client.settings;
+    var client = message.client;
+    var settings = client.settings;
     var prefix = settings.prefix;
     var prefix2 = null;
+    var query = client.db;
 
     let messageArray = message.content.split(" ");
     let args = messageArray.slice(1);
