@@ -12,6 +12,9 @@ module.exports = async message => {
     let args = messageArray.slice(1);
     let command = messageArray[0];
 
+    var res = await query(`SELECT * FROM guilds where guild_id='${message.guild.id}'`);
+    if(res[0]) prefix2 = res[0].prefix;
+
     if(message.channel.type == 'dm') return;
     if(command.startsWith(prefix) || command.startsWith(prefix2));
     else return;
