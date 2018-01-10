@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
         .setThumbnail(target.iconURL)
         .addField("Owner", `${owner.user.username}#${owner.user.discriminator}`, true)
         .addField("Reigon", `${target.region}`, true)
-        .addField("Emotes count", emojis,true)          
+        .addField("Emotes", emojis,true)          
         .addField("Members", `${target.memberCount}`,true)
         .addField("Created", moment(target.createdTimestamp).format('MMMM Do YYYY, h:mm:ss a'), true)          
         .setTimestamp();
