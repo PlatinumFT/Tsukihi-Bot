@@ -29,7 +29,7 @@ exports.run = async (bot, message, args) => {
             if(k.help.type == "roles") listRoles+=k.help.name + " "
             if(k.help.type == "owner") listOwner+=k.help.name + " "
         });
-        let guildMem = message.guild.members.get(client.user.id);
+        let guildMem = message.guild.members.get(bot.user.id);
 
         let embed = new Discord.RichEmbed()
         .setAuthor(`List of commands for ${bot.user.username}`, bot.user.avatarURL)
