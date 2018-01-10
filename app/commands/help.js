@@ -35,7 +35,6 @@ exports.run = async (bot, message, args) => {
         .setAuthor(`List of commands for ${bot.user.username}`, bot.user.avatarURL)
         .setColor(guildMem.displayColor)
         .addField(`Moderation`, listMod)
-        .addField(`Fun`, listFun)
         .addField(`Roles`, listRoles)
         .addField(`Help`, listHelp)        
         .addField(`Owner`, listOwner)        

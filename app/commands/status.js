@@ -43,5 +43,5 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "status",
     description: "Checks bot info",
-    usage: "utility"
+    usage: "help"
 }
