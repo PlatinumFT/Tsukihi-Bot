@@ -12,15 +12,15 @@ exports.run = async (client, message, args) => {
             emojis+=1;
         })
         let embed = new Discord.RichEmbed()
-        .setAuthor(`Guild info for ${target.name}`)
+        .setAuthor(`Guild info for ${target.name}`, target.iconURL)
         .setDescription(`ID: ${target.id}`)
         .setColor('#FFFFFF')
-        .setThumbnail(target.displayAvatarURL)
+        .setThumbnail(target.iconURL)
         .addField("Owner", `${owner.user.username}#${owner.user.discriminator}`, true)
         .addField("Reigon", `${target.region}`, true)
+        .addField("Emotes count", emojis,true)          
+        .addField("Members", `${target.memberCount}`,true)
         .addField("Created", moment(target.createdTimestamp).format('MMMM Do YYYY, h:mm:ss a'), true)          
-        .addField("Emotes count", emojis)          
-        .addField("Members", `${target.memberCount}`)
         .setTimestamp();
 
         message.channel.send(embed);
