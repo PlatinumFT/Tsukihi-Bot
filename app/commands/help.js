@@ -12,6 +12,7 @@ exports.run = async (bot, message, args) => {
 
 
     let helpme = args[0];
+    let guildMem = message.guild.members.get(bot.user.id);
 
     if (!helpme) {
 
@@ -29,7 +30,6 @@ exports.run = async (bot, message, args) => {
             if(k.help.type == "roles") listRoles+=k.help.name + " "
             if(k.help.type == "owner") listOwner+=k.help.name + " "
         });
-        let guildMem = message.guild.members.get(bot.user.id);
 
         let embed = new Discord.RichEmbed()
         .setAuthor(`List of commands for ${bot.user.username}`, bot.user.avatarURL)
@@ -49,7 +49,7 @@ exports.run = async (bot, message, args) => {
 	let cmd = bot.commands.get(args[0]);
 
         let embed = new Discord.RichEmbed()
-        .setColor("#9B59B6")
+        .setColor(guildMem.displayColor)
         .addField(`${cmd.help.name}`, `${cmd.help.description}`)
         .setFooter(`Usage: ${cmd.help.usage}`);
 
