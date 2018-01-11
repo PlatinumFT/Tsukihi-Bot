@@ -2,17 +2,17 @@ exports.run = async (client, message, args) => {
     if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.sendMessage("You don't have the correct permissions to lockdown!");
 
     message.channel.overwritePermissions(message.guild.id, {
-        SEND_MESSAGES: false
+        SEND_MESSAGES: null
     }).then(() => {
-        message.channel.send(`Channel locked.`);
+        message.channel.send(`Channel unlocked.`);
     }).catch(() => {
-        message.channel.send(`Locking channel failed!`);
+        message.channel.send(`Unlocking channel failed!`);
     });
 }
 
 exports.help = {
-    name: "lockdown",
-    description: "Locks the current channel so that nobody can send messages.",
-    usage: "lockdown",
+    name: "unlock",
+    description: "Unlocks the current channel.",
+    usage: "unlock",
     type: "moderation"    
 }
