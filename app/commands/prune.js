@@ -8,9 +8,9 @@ exports.run = async (client, message, args) => {
             .catch(error => message.channel.send(`Error: ${error}`));
     } else {
         const fetched = await message.channel.fetchMessages({limit: 100});
-        let botMessages = {};
+        let botMessages;
         fetched.forEach(e => {
-            if (e.author.id == client.user.id) botMessages.push(e);
+            if (e.author.id == client.user.id) botMessages += e;
             else return;
         })
         message.channel.bulkDelete(botMessages)
