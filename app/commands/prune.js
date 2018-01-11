@@ -3,9 +3,17 @@ exports.run = async (client, message, args) => {
         if(!parseInt(args[0])) return message.channel.send(`Please use a valid number!`);
 
         const fetched = await message.channel.fetchMessages({limit: args[0]});
-        console.log(fetched);
+        message.channel.bulkDelete(fetched)
+            .catch(error => message.channel.send(`Error: ${error}`));
     } else {
-
+        const fetched = await message.channel.fetchMessages({limit: 100});
+        const botMessages;
+        fetched.forEach(e => {
+            if (e.author.id == client.user.id) botMessages+=e;
+            else return;
+        })
+        message.channel.bulkDelete(botMessages)
+            .catch(error => message.channel.send(`Error: ${error}`));
     }
 }
 
