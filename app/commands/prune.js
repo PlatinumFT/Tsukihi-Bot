@@ -1,6 +1,6 @@
 exports.run = async (client, message, args) => {
     if (args[0]) {
-        if(isNan(args[0])) return message.channel.send(`Please use a valid number!`);
+        if(!parseInt(args[0])) return message.channel.send(`Please use a valid number!`);
 
         const fetched = await message.channel.fetchMessages({limit: args[0]});
         console.log(fetched);
