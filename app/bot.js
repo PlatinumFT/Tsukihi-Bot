@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 
 const client = new Discord.Client({disableEveryone: true});
       client.db = require('./pgsql.js');
+      client.xp = {};
+      client.globalxp = {};
 module.exports = {
     run: async function() {
         let query = client.db;
