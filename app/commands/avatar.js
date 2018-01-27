@@ -12,10 +12,10 @@ exports.run = async (bot, message, args) => {
         if(text) {
             let isXp;
             let isName;
-            isXp = bot.users.get(text);
+            isId = bot.users.get(text);
             isName = bot.users.find(val => val.username.toLowerCase() === text.toLowerCase());
-            if (isXp) {
-                target = isXp;
+            if (isId) {
+                target = isId;
             } else if (isName) {
                 target = isName;
             } else if (message.mentions.users) {
@@ -24,7 +24,9 @@ exports.run = async (bot, message, args) => {
         }
             if(!target) return message.channel.send("not found");
 
-    await message.channel.send(target.avatarURL);
+    await message.channel.send({
+        file: target.avatarURL.replace('?size=2048', '')
+    });
     
     msg.delete();
 }
