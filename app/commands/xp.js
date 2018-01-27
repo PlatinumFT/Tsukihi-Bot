@@ -30,7 +30,11 @@ module.exports.run = async (bot, message, args) => {
             xp = res[0].xp;
         }
 
-        message.channel.send(`${message.author}, you have ${xp} xp.`)
+        let embed = new Discord.RichEmbed()
+        .setAuthor(`Current xp for ${target.username}`, target.displayAvatarURL)
+        .setDescription(`${target.username} currently has ${xp} XP.`);
+
+        message.channel.send(embed);
 }
 
 module.exports.help = {
