@@ -18,6 +18,10 @@ module.exports = async message => {
     if(res[0]) prefix2 = res[0].prefix;
 
     if(message.channel.type == 'dm') return;
+
+    require('../util/xpHandler.js')(message);
+    require('../util/globalXpHandler.js')(message);
+
     if(command.startsWith(prefix) || command.startsWith(prefix2));
     else return;
 
