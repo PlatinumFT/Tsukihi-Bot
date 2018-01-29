@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
     for(i=minResults;i<maxResults;i++){
         if(res[i]) {
         let user = client.users.get(res[i].user_id);
-        text+=`**[${i+1}]**     __**${user.username}#${target.discriminator}**__\n                XP: ${res[i].xp}\n`;
+        text+=`**[${i+1}]**     __**${user.username}#${user.discriminator}**__\n                XP: ${res[i].xp}\n`;
         } 
     }
     for(i=0;i<(res.length);i++) {
