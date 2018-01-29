@@ -20,12 +20,11 @@ module.exports = async message => {
     if(message.channel.type == 'dm') return;
 
     require('../util/xpHandler.js')(message);
-    require('../util/globalXpHandler.js')(message);
 
     if(command.startsWith(prefix) || command.startsWith(prefix2));
     else return;
 
-    let cmd = client.commands.get(command.slice(prefix.length)) || 
+    let cmd = client.commands.get(command.slice(prefix.length)) ||
     client.commands.get(client.aliases.get(command.slice(prefix.length)));
 
     if(!cmd) return;
