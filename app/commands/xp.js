@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
             
         if(!target) return message.channel.send("not found");
 
-        let res = await query(`SELECT * FROM xp WHERE (user_id = '${message.author.id}' AND guild_id = '${message.guild.id}')`);
+        let res = await query(`SELECT * FROM xp WHERE (user_id = '${target.id}' AND guild_id = '${message.guild.id}')`);
         if (!res[0]) {
             xp = 0;
         } else {
