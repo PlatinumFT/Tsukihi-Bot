@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
 
     switch(args[0].toLowerCase()) {
         case 'check':
-            res = await query(`SELECT * from ignorexp WHERE(guild_id = '${message.guild.id}' AND channel_id = '${message.channel.id}')`);
+            res = await query(`SELECT * from ignorexp WHERE(guild_id = '${message.guild.id}')`);
             if(!res[0]) return message.channel.send(`There are no channels that have xp disabled!`);
             let str="";
             res.forEach(e => {
