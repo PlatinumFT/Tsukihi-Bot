@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
         }
 
         let embed = new Discord.RichEmbed()
-        .setAuthor(`Current xp for ${target.username}`, target.displayAvatarURL)
+        .setAuthor(`Current xp for ${target.username}#${target.discriminator}`, target.displayAvatarURL)
         .setDescription(`${target.username} currently has ${xp} XP.`);
 
         message.channel.send(embed);
