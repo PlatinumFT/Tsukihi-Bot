@@ -4,11 +4,13 @@ const Nodesu = require("nodesu");
 module.exports.run = async (client, message, args) => {
     let res = await client.db(`SELECT osu_key FROM SETTINGS`);
     if(!res[0]) return message.channel.send(`There is no osu api key set!`);
-    let apiKey = res[0];
+    let apiKey = res[0].osu_key;
     const osu = await new Nodesu.Client(apiKey);
 
-    let user = await osu.user.get(args[0]);
-    let g = await osu.user.getBest(args[0], 0, 5);
+    let text = args.slice(0).join(' ');
+
+    let user = await osu.user.get(text);
+    let g = await osu.user.getBest(text, 0, 5);
     str="";
 
     for(i=0;i<g.length;i++) {
