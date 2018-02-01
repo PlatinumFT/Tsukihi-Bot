@@ -13,16 +13,15 @@ module.exports = async message => {
     let command = messageArray[0];
     let isOwner = false;
     if(settings.owner_id == message.author.id) isOwner = true;
-
-    var res = await query(`SELECT * FROM guilds where guild_id='${message.guild.id}'`);
-    if(res[0]) prefix2 = res[0].prefix;
-
+    if(!command.startsWith(prefix)) {
+        var res = await query(`SELECT * FROM guilds where guild_id='${message.guild.id}'`);
+        if(res[0]) prefix = res[0].prefix;
+    }
     if(message.channel.type == 'dm') return;
 
     require('../util/xpHandler.js')(message);
 
-    if(command.startsWith(prefix) || command.startsWith(prefix2));
-    else return;
+    if(!command.startsWith(prefix)) return;
 
     let cmd = client.commands.get(command.slice(prefix.length)) ||
     client.commands.get(client.aliases.get(command.slice(prefix.length)));
