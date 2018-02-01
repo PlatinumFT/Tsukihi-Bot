@@ -39,12 +39,11 @@ module.exports.run = async (bot, message, args, db) => {
         }
         else {
 
-            if(!res) return message.channel.send(embedFail("You do not have a role!"));
-            
+            if(!res[0]) return message.channel.send(embedFail("You do not have a role!"));
+
             let myRole = message.guild.roles.get(res[0].role_id);
 
             hexCode = args[0];
-            console.log(args[0]);
             myRole.setColor(hexCode);
             return message.channel.send(embedSuccess(`You have changed ${myRole.name}'s color from ${myRole.hexColor} to #${hexCode}!`));
         }
