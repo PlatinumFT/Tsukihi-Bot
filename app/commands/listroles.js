@@ -10,6 +10,11 @@ module.exports.run = async (client, message, args, db) => {
         if (res.length == 0) assignNames = "There are no self assignable roles."
         for (i = 0; i < numbRoles; i++) {
             let myRole = message.guild.roles.find("id", res[i].role_id);
+            if(!myRole) {
+                await query(`DELETE FROM roles where guild_id = '${message.guild.id}' AND role_id = '${res[i].role_id}'`);
+                return;
+            }
+
             if(i == numbRoles-1) {
                 assignNames+=myRole.name + "."
         } else {
