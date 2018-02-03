@@ -11,6 +11,10 @@ module.exports.run = async (client, message, args, db) => {
         for (i = 0; i < numbRoles; i++) {
             let myRole = message.guild.roles.find("id", res[i].role_id);
             let myUser = message.guild.members.find("id", res[i].user_id);
+            if(!myRole || !myUser) {
+                await query(`DELETE FROM user_roles where guild_id = '${message.guild.id}' AND role_id = '${res[i].role_id}' and user_id = '${res[i].user_id}'`);
+                return;
+            }
             assignNames+=`${myUser.user.username}#${myUser.user.discriminator} - ${myRole.name}\n`;
         }
 
