@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
         case "xp":
             if(!args[1]) return await message.channel.send("Please specify a user!");
             if(!args[2]) return await message.channel.send("Please specify an amount!");
-            if(isNan(parseInt(args[2]))) return message.channel.send("Please specify a valid amount!");
+            if(isNaN(parseInt(args[2]))) return message.channel.send("Please specify a valid amount!");
             let res = await query(`select * from globalxp where user_id = '${args[1]}'`);
             if(!res[0]) return await message.channel.send("This user does not exist in the database!");
 
