@@ -8,6 +8,9 @@ module.exports = async message => {
     var prefix = settings.prefix;
     var prefix2 = null;
     var query = client.db;
+    var blacklist = client.blacklist;
+
+    if(blacklist.indexOf(message.author.id) > -1) return;
 
     let messageArray = message.content.split(" ");
     let args = messageArray.slice(1);
