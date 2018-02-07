@@ -1,16 +1,21 @@
 const Discord = require("discord.js");
+const fs = require('fs');
 
 exports.run = async (client, message, args) => {
     try {
         const code = args.join(" ");
-        let evaled = eval(code);
-    
+        let evaled = await eval(code);
+
+        fs.appendFile('eval_log.txt', `${message.author.name} evalled - ${code}`, function (err) {
+          if (err) throw err;
+        });
+
         if (typeof evaled !== "string")
           evaled = require("util").inspect(evaled);
     
-        message.channel.send((evaled), {code:"xl"});
+        await message.channel.send((evaled), {code:"xl"});
       } catch (err) {
-        message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+        await message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
       }
     
 }
