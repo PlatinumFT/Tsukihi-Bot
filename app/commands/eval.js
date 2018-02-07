@@ -6,13 +6,13 @@ exports.run = async (client, message, args) => {
         const code = args.join(" ");
         let evaled = await eval(code);
 
-        fs.appendFile('eval_log.txt', `${message.author.name} evalled - ${code}`, function (err) {
+        fs.appendFile('./log/eval_log.log', `${message.author.username} evalled - ${code}\n`, function (err) {
           if (err) throw err;
         });
 
         if (typeof evaled !== "string")
           evaled = require("util").inspect(evaled);
-    
+
         await message.channel.send((evaled), {code:"xl"});
       } catch (err) {
         await message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
