@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
             let res = await query(`select * from globalxp where user_id = '${args[1]}'`);
             if(!res[0]) return await message.channel.send("This user does not exist in the database!");
 
-            await query(`UPDATE globalxp SET xp = ${res[0].xp+parseInt(args[2])} WHERE (user_id = '${args[1]}')`);
+            await query(`UPDATE globalxp SET xp = ${parseInt(res[0].xp)+parseInt(args[2])} WHERE (user_id = '${args[1]}')`);
             return await message.channel.send(`Done!`);
     }
 }
