@@ -1,13 +1,22 @@
 const Discord = require("discord.js");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 exports.run = async (client, message, args) => {
     if (!args[0]) return message.channel.send("Please specify an emote!")
-    var arg = args[0].split(":");
-    emojiId = arg[2].substr(0, arg[2].indexOf('>'));
+    var emotetext = args[0];
+    var emoteRegex = /\:(\d.*?[0-9])\>/;
+    var notid = emotetext.match(emoteRegex);
+    var id = notid[1];
 
+    var nameRegex = /\:(.*?)\:/;
+    var emotenameresult = emotetext.match(nameRegex);
+    var emotename = emotenameresult[1];
 
-    message.channel.send(`**Emote:** :${arg[1]}:`, {
-        file: `https://cdn.discordapp.com/emojis/${emojiId}.png`
+    let extension = "png";
+    if(imageExists(id)) extension = "gif";
+
+    message.channel.send(`**Emote:** :${emotename}:`, {
+        file: `https://cdn.discordapp.com/emojis/${id}.${extension}`
     });
 }
 
@@ -20,4 +29,13 @@ exports.help = {
 
 exports.conf = {
     aliases: [ 'se', 'emoji' ]
+}
+
+function imageExists(id){
+
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', `https://cdn.discordapp.com/emojis/${id}.gif`, false);
+    http.send();
+    return http.status == 200;
 }
