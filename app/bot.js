@@ -11,8 +11,8 @@ module.exports = {
         let res = await query(`SELECT * FROM SETTINGS`);
         client.settings = res[0];
 
-        let res = await query(`SELECT * FROM blacklist`);
-        client.blacklist = res;
+        let bl = await query(`SELECT * FROM blacklist`);
+        client.blacklist = bl;
 
         require('./util/eventLoader')(client);
         await client.login(res[0].token);

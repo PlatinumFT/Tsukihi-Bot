@@ -4,7 +4,7 @@ const fs = require('fs');
 exports.run = async (client, message, args) => {
     try {
         const code = args.join(" ");
-        let evaled = await eval(code);
+        let evaled = eval(code);
 
         fs.appendFile('./log/eval_log.log', `${message.author.username} evalled - ${code}\n`, function (err) {
           if (err) throw err;

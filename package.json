@@ -19,6 +19,8 @@
   "dependencies": {
     "colors": "^1.1.2",
     "discord.js": "^11.2.1",
+    "moment": "^2.20.1",
+    "nodesu": "^0.6.3",
     "pg": "^7.4.1",
     "readline-sync": "^1.4.7",
     "xmlhttprequest": "^1.8.0"
