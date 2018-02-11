@@ -1,23 +1,19 @@
 const Discord = module.require("discord.js");
 
-exports.run = async (bot, message, args) => {
+exports.run = async (client, message, args) => {
 
     let msg = await message.channel.send("Generating avatar...")
     let target;
     
     let text = args.slice(0).join(' ');
-    
-    if(!text) target = message.author;
-    
-    if(text) target = bot.users.get(text) 
-                      || bot.users.find(u => u.username.toLowerCase() === text.toLowerCase()) 
-                      || message.mentions.users.first();
-        
+
+    target = await client.findUser(message, text);    
     if(!target) return message.channel.send("not found");
 
-    await message.channel.send({
-        file: target.avatarURL.replace('?size=2048', '')
-    });
+    await message.channel.send(new Discord.RichEmbed()
+                                .setImage(target.avatarURL)
+                                .setColor(await client.findColour(message, client.user))
+                              );
     
     await msg.delete();
 }

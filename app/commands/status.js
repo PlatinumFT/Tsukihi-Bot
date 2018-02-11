@@ -18,23 +18,15 @@ module.exports.run = async (client, message, args) => {
     let count = 0;        
     let guildMem = message.guild.members.get(target.id);
 
-    guildMem.roles.forEach(x => {
-        if (x.name == "@everyone") return;
-        roles+=x.name + " ";
-        count+=1;
-    })
-
     owners = client.settings.owner_id;
 
     let embed = new Discord.RichEmbed()
-        .setAuthor(`${target.username} by Platinum#2109`, target.displayAvatarURL)
+        .setAuthor(`${target.username} by Platinum#00`, target.displayAvatarURL)
         .setColor(guildMem.displayColor)
         .setThumbnail(target.displayAvatarURL)
         .setDescription(`Serving ${client.users.size} users in ${client.guilds.size} guilds.`)
         .addField('Ram usage', `${(os.freemem()/1048576).toFixed(0)}MB`, true)
         .addField('Uptime', `${hours}:${minutes}:${seconds}.${milliseconds}`, true)
-        .addField('Bot owners', owners)
-        .addField(`Roles [${count}]`, roles)
         .setTimestamp();
 
     return message.channel.send(embed);

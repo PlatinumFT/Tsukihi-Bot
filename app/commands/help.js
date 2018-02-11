@@ -33,7 +33,7 @@ exports.run = async (bot, message, args) => {
 
         let embed = new Discord.RichEmbed()
         .setAuthor(`List of commands for ${bot.user.username}`, bot.user.avatarURL)
-        .setColor(guildMem.displayColor)
+        .setColor(await bot.findColour(message, bot.user))
         .addField(`Moderation`, listMod)
         .addField(`Roles`, listRoles)
         .addField(`Help`, listHelp)        

@@ -1,27 +1,14 @@
 const Discord = module.require("discord.js");
 const moment = require("moment");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args) => {
     let text = args.slice(0).join(' ');
-    const query = bot.db;
+    const query = client.db;
     let xp;
         if(!text) target = message.author;
     
-        if(text) {
-            let isXp;
-            let isName;
-            isId = bot.users.get(text);
-            isName = bot.users.find(val => val.username.toLowerCase() === text.toLowerCase());
-            if (isId) {
-                target = isId;
-            } else if (isName) {
-                target = isName;
-            } else if (message.mentions.users) {
-                target = message.mentions.users.first();
-            } else message.channel.send("not found!");
-        }
-            
-        if(!target) return message.channel.send("not found");
+        target = await client.findUser(message, text);
+        if(!target) return message.channel.send("User not found!");
 
         let res = await query(`SELECT * FROM globalxp WHERE (user_id = '${target.id}')`);
         if (!res[0]) {
@@ -32,7 +19,8 @@ module.exports.run = async (bot, message, args) => {
 
         let embed = new Discord.RichEmbed()
         .setAuthor(`Current xp for ${target.username}#${target.discriminator}`, target.displayAvatarURL)
-        .setDescription(`${target.username} currently has ${xp} XP.`);
+        .setDescription(`${target.username} currently has ${xp} XP.`)
+        .setColor(await client.findColour(message, client.user));
 
         message.channel.send(embed);
 }

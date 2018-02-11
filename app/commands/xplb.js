@@ -22,8 +22,11 @@ module.exports.run = async (client, message, args) => {
 
     for(i=minResults;i<maxResults;i++){
         if(res[i]) {
+        let isHere;
         let user = client.users.get(res[i].user_id);
-        text+=`**[${i+1}]**     __**${user.username}#${user.discriminator}**__\n                XP: ${res[i].xp}\n`;
+        if(!user) isHere= "<User has left guild>"
+        else isHere = `${user.username}#${user.discriminator}`;
+        text+=`**[${i+1}]**     __**${isHere}**__\n                XP: ${res[i].xp}\n`;
         } 
     }
     for(i=0;i<(res.length);i++) {
@@ -35,7 +38,7 @@ module.exports.run = async (client, message, args) => {
     embed = new Discord.RichEmbed()
         .setAuthor(`XP Leaderboard for ${message.guild.name}`, message.guild.iconURL)
         .setDescription(text)
-        .setColor(message.guild.members.get(client.user.id).displayColor)
+        .setColor(await client.findColour(message, client.user))
         .setFooter(footerText);
 
     message.channel.send(embed);
