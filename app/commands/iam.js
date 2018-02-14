@@ -73,6 +73,7 @@ module.exports.run = async (bot, message, args, db) => {
         }
         }
     } 
+    getRole(roleCount);
     }else {
         var rows = await query(`SELECT * FROM roles WHERE guild_id = '${message.guild.id}' AND role_id='${myRole.id}'`);        
         if(!rows) return message.channel.send(embedFail("This is not an assignable role!"));        
