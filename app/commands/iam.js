@@ -53,10 +53,30 @@ module.exports.run = async (bot, message, args, db) => {
     }
 
     getRole(roleCount);
-    } else {
+    } else if(message.guild.id == "403050328536121354") {
+        var rows = await query(`SELECT * FROM roles WHERE guild_id = '${message.guild.id}'`);
+        let assignNames = "";
+    
+        var numbRoles = rows.length;
+
+            let roleCount=0;
+        if (myRole.id == "403074596711956491" || myRole.id == "412080053598289922"){
+
+        } else {
+        for(i=0;i<numbRoles;i++) {
+            if (rows[i].role_id == "403074596711956491" || rows[i].role_id == "412080053598289922") {roleCount+=0} else {
+            let userRole = message.guild.roles.find("id", rows[i].role_id);
+            if (message.member.roles.has(userRole.id)) {
+                roleCount+=1
+                if(!myRole.id === rows[i].role_id) return message.channel.send(embedFail("This is not an assignable role!"));
+            }
+        }
+        }
+    } 
+    }else {
         var rows = await query(`SELECT * FROM roles WHERE guild_id = '${message.guild.id}' AND role_id='${myRole.id}'`);        
         if(!rows) return message.channel.send(embedFail("This is not an assignable role!"));        
-    getRole();
+    getRole(roleCount);
     }
 
     async function getRole(roleCount) {
@@ -69,6 +89,9 @@ module.exports.run = async (bot, message, args, db) => {
         } else if(res[0]) {
                 if(message.guild.id == "204487943568621568") {
                     if(roleCount>=2) return message.channel.send(embedFail("You already have 2 character roles!"));                              
+                }
+                if(message.guild.id == "403050328536121354") {
+                    if(roleCount>=2) return message.channel.send(embedFail("You already have 2 roles!"));                              
                 }
                 try {
                 message.guild.member(message.author).addRole(myRole, "Self assigned role.");
