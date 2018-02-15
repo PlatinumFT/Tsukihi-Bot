@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args, db) => {
 
     
 
-    if (!args[0]) return message.channel.send(noargsembed);
+    if (!args[0]) return;
     let myRole = message.guild.roles.find(val => val.name.toLowerCase() === rolejoin.toLowerCase());
     if(!myRole) return message.channel.send(embedFail("This role does not exist!"));
     minorRole = message.guild.roles.get("298702403220537344");
