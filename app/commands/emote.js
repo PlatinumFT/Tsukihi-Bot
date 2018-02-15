@@ -6,10 +6,12 @@ exports.run = async (client, message, args) => {
     var emotetext = args[0];
     var emoteRegex = /\:(\d.*?[0-9])\>/;
     var notid = emotetext.match(emoteRegex);
+    if (!notid) return;
     var id = notid[1];
 
     var nameRegex = /\:(.*?)\:/;
     var emotenameresult = emotetext.match(nameRegex);
+    if (!emotenameresult) return;
     var emotename = emotenameresult[1];
 
     let extension = "png";
@@ -22,8 +24,8 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
     name: "emote",
-    description: "",
-    usage: "emote",
+    description: "Shows a full resolution image of a specified emote.",
+    usage: "emote [emote name]",
     type: "utility"
 }
 
