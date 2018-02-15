@@ -19,8 +19,8 @@ module.exports = client => {
     
                 console.log(`Loading ${jsfiles.length} commands in ${f}!`.bold.yellow)
     
-                jsfiles.forEach((f, i) => {
-                    let props = require(`./app/commands/${folder}/${f}`);
+                jsfiles.forEach((j, k) => {
+                    let props = require(`../commands/${f}/${j}`);
                     client.commands.set(props.help.name, props);
                     if(!props.conf || !props.conf.aliases || props.conf.aliases[0] == '') return;
                     props.conf.aliases.forEach(alias => {
