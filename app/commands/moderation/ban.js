@@ -5,6 +5,7 @@ exports.run = async (bot, message, args) => {
 
     let toBan = message.mentions.users.first() || message.guild.members.get(args[0]);
     if(!toBan) return message.channel.send("You did not specify a user!")
+    if(!toBan.id == message.author.id) return message.channel.send("You cannot ban yourself!");
         try {
             ban = await message.guild.member(toBan).ban();
 
@@ -16,7 +17,6 @@ exports.run = async (bot, message, args) => {
 
             return message.channel.send(embed);
         } catch(e) {
-            console.log(e.message);
             return message.channel.send('I cannot ban this user!');
         }
     }

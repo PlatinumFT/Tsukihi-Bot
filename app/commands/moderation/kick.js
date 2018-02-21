@@ -5,7 +5,7 @@ exports.run = async (bot, message, args) => {
         
         let toKick = message.mentions.users.first() || message.guild.members.get(args[0]);
         if(!toKick) return message.channel.send("You did not specify a user!")
-
+        if(!toKick.id == message.author.id) return message.channel.send("You cannot kick yourself!");
         try {
             kick = await message.guild.member(toKick).kick();
 

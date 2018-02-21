@@ -10,8 +10,11 @@ exports.run = async (client, message, args) => {
 
     for(i=0;i<args.length;i++) {
         try {
-            ban = await message.guild.ban(args[i]);
-            success+=1;
+            if(args[i].id == message.author.id) failure+=1;
+            else {
+                ban = await message.guild.ban(args[i]);
+                success+=1;
+            }
         } catch(e) {
             failure+=1
         }
