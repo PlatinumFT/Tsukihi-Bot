@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
     let reasonSQL = reason.replaceAll("'", "''")
     let numb = 0;
 
-    if(res[0]) numb = res[0].id;
+    if(res[0]) numb = parseInt(res[0].id);
     await client.db(`INSERT INTO WARNINGS VALUES ('${message.guild.id}',${numb+1}, '${target.id}','${reasonSQL}', '${date}', '${message.author.id}')`)
     target.send(await warnedEmbed(message, reason)).catch(e => console.error);
     message.channel.send(`User **${target.username}#${target.discriminator} has been warned.**`);
