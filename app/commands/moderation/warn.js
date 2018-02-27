@@ -5,14 +5,14 @@ module.exports.run = async (client, message, args) => {
     if(!args[0]) return message.channel.send("You did not specify a user!");
     target = await client.findUser(message, args[0]);
     if(!target) return message.channel.send("User not found!");
-    let res = await client.db(`select * from warnings where guild_id = '${message.guild.id}'`);
+    let res = await client.db(`select * from warnings where guild_id = '${message.guild.id}' ORDER BY id desc`);
     let date = new Date().toUTCString()
 
     if(args[1]) reason = args.slice(1).join(' ');
     else reason = `No reason specified.`
     let reasonSQL = reason.replaceAll("'", "''")
 
-    await client.db(`INSERT INTO WARNINGS VALUES ('${message.guild.id}',${res.length+1}, '${target.id}','${reasonSQL}', '${date}', '${message.author.id}')`)
+    await client.db(`INSERT INTO WARNINGS VALUES ('${message.guild.id}',${res[0].id+1}, '${target.id}','${reasonSQL}', '${date}', '${message.author.id}')`)
     target.send(await warnedEmbed(message, reason)).catch(e => console.error);
     message.channel.send(`User **${target.username}#${target.discriminator} has been warned.**`);
 }
