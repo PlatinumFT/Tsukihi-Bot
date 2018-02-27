@@ -20,7 +20,8 @@ module.exports.run = async (client, message, args) => {
             else numb = res.length
             for(i=0;i<numb;i++) {
                 let target = await client.findUser(message, res[i].user_id);
-                str += `**Case: ${res[i].id}** - User **__${target.username}#${target.discriminator}__** warned at ${moment(res[i].time).format('MMMM Do YYYY, h:mm:ss a')}\n**Reason:** ${res[i].reason}\n\n`;
+                let mod = await client.findUser(message, res[i].mod_id);
+                str += `**Case: ${res[i].id}** - User **__${target.username}#${target.discriminator}__** warned at ${moment(res[i].time).format('MMMM Do YYYY, h:mm:ss a')}\n**Reason:** ${res[i].reason}\n**Warned By:** ${mod.id}\n\n`;
             }
     
             embed.setDescription(str);
@@ -38,7 +39,8 @@ module.exports.run = async (client, message, args) => {
                 if (res.length > 10) numb=10;
                 else numb = res.length
                 for(i=0;i<numb;i++) {
-                    str += `**Case: ${res[i].id}** - User **__${target.username}#${target.discriminator}__** warned at ${moment(res[i].time).format('MMMM Do YYYY, h:mm:ss a')}\n**Reason:** ${res[i].reason}\n\n`;
+                    let mod = await client.findUser(message, res[i].mod_id);
+                    str += `**Case: ${res[i].id}** - User **__${target.username}#${target.discriminator}__** warned at ${moment(res[i].time).format('MMMM Do YYYY, h:mm:ss a')}\n**Reason:** ${res[i].reason}\n**Warned By:** ${mod.id}\n\n`;
                 }
         
                 embed.setDescription(str);
