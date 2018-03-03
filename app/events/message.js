@@ -24,6 +24,8 @@ module.exports = async message => {
         var res = await query(`SELECT * FROM guilds where guild_id='${message.guild.id}'`);
         if(res[0]) prefix = res[0].prefix;
     }
+    
+    require('../util/filter.js')(message, message.content);
     require('../util/xpHandler.js')(message);
 
     if(!command.startsWith(prefix)) return;
