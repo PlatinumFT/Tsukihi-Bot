@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
         let text = args.slice(1).join(' ');
         let textSQL = text.replaceAll("'", "''");
         await client.db(`delete from filter where guild_id = '${message.guild.id}' and phrase = '${textSQL}'`);
-        await message.channel.send(`Added ${text} to list of filtered words/phrases.`);
+        await message.channel.send(`Removed ${text} from list of filtered words/phrases.`);
     }
 
     if(!args[0]) {

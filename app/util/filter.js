@@ -13,9 +13,9 @@ module.exports = async (message, text) => {
     let res = await query(`select * from filter where guild_id = '${message.guild.id}'`);
     if(!res[0]) return;
     res.forEach(e => {
-        if(text.includes(e.phrase)) {
+        if(text.toLowerCase().includes(e.phrase)) {
             message.delete();
-            message.channel.send(`${message.author}, you are not allowed to use a banned word/phrase.`)
+            return message.channel.send(`${message.author}, you are not allowed to use a banned word/phrase.`)
         };
     });
 }
