@@ -19,7 +19,6 @@ module.exports.run = async (bot, message, args) => {
     return embed
     }
 
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(embedFail("You do not have the permission to use this command!"));
     if (!args[0]) return message.channel.send("Please specify a user to add!");
     let toAdd = message.guild.members.get(args[0]) || message.guild.members.get(message.mentions.users.first().id);
 
