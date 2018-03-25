@@ -13,3 +13,10 @@ module.exports.help = {
     usage: "clearwarn <id>",
     type: ""
 }
+
+exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
+}

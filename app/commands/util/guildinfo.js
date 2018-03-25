@@ -6,13 +6,12 @@ exports.run = async (client, message, args) => {
         if(!args[0]) guildID = message.guild.id;
         else guildID = args[0];
 
-        if(!client.settings.owner_id == message.author.id) guildId = message.guild.id;  
+        console.log(client.settings);
+        if(!client.settings.owner_id == message.author.id) guildID = message.guild.id;
         let target = client.guilds.get(guildID);
-        let emojis = 0;
+        let emojis = target.emojis.size;
         let owner = target.members.get(target.ownerID);
-        target.emojis.forEach(e => {
-            emojis+=1;
-        })
+
         let embed = new Discord.RichEmbed()
         .setAuthor(`Guild info for ${target.name}`, target.iconURL)
         .setDescription(`ID: ${target.id}`)
@@ -26,7 +25,7 @@ exports.run = async (client, message, args) => {
         .setTimestamp();
 
         message.channel.send(embed);
-    } else if(args[1] = "users") {
+    } else if(args[1] == "users") {
         if(!client.settings.owner_id == message.author.id) return;
         let target = client.guilds.get(args[0]);
         let users = "";
@@ -34,6 +33,14 @@ exports.run = async (client, message, args) => {
             users+=`\`${e.user.username}#${e.user.discriminator}\`, `;
         });
         return message.channel.send(`**List of users in ${target.name}**\n${users}`);
+    } else if(args[1] == "channels") {
+        if(!client.settings.owner_id == message.author.id) return;
+        let target = client.guilds.get(args[0]);
+        let channels = "";
+        target.channels.forEach(e => {
+            channels+=`${e.name}, `;
+        });
+        return message.channel.send(`**List of channels in ${target.name}**\n${channels}`);
     }
 }
 

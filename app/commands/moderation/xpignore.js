@@ -2,8 +2,6 @@ const Discord = module.require("discord.js");
 const moment = require("moment");
 
 module.exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("You don't have the correct permissions to alter xp!");
-
     let query = client.db;
     let res;
 
@@ -42,4 +40,11 @@ module.exports.help = {
     description: "Ignores a channel from gaining xp.",
     usage: "xpignore ENABLE/DISABLE",
     type: "utility"    
+}
+
+exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
 }

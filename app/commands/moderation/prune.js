@@ -23,3 +23,10 @@ exports.help = {
     usage: "prune",
     type: "moderation"    
 }
+
+exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
+}

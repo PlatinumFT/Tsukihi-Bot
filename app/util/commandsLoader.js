@@ -21,6 +21,7 @@ module.exports = client => {
     
                 jsfiles.forEach((j, k) => {
                     let props = require(`../commands/${f}/${j}`);
+                    props.help.type = f;
                     client.commands.set(props.help.name, props);
                     if(!props.conf || !props.conf.aliases || props.conf.aliases[0] == '') return;
                     props.conf.aliases.forEach(alias => {

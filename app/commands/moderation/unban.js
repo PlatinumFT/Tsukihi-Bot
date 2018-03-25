@@ -28,5 +28,9 @@ exports.help = {
 }
 
 exports.conf = {
-    aliases: [ 'ub' ]
+    aliases: [ 'ub' ],
+    permissions:
+    [
+        'BAN_MEMBERS'
+    ]
 }

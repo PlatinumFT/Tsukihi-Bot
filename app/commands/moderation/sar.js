@@ -19,7 +19,6 @@ module.exports.run = async (bot, message, args) => {
     return embed
     }
 
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(embedFail("You do not have the permission to use this command!"));    
 
     if (!args[0]) return message.channel.send("Please specify a role to add!");
     let rolejoin = args.slice(0).join(' ');
@@ -51,4 +50,11 @@ module.exports.help = {
     description: "Sets a role as a self assignable role.",
     usage: "sar [role]",
     type: "roles"    
+}
+
+module.exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
 }

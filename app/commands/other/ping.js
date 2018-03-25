@@ -11,5 +11,5 @@ exports.help = {
     type: "help"    
 }
 exports.conf = {
-    aliases: ['p']
+    aliases: ['p'],
 }
