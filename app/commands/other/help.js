@@ -15,31 +15,26 @@ exports.run = async (bot, message, args) => {
     let guildMem = message.guild.members.get(bot.user.id);
 
     if (!helpme) {
-
-        let listMod="";
-        let listFun="";
-        let listHelp="";
-        let listUtility="";
-        let listRoles="";
-        let listOwner="";
+        let cmds = new Map();
+        let embed = new Discord.RichEmbed()
+            .setAuthor(`List of commands for ${bot.user.username}`, bot.user.avatarURL)
+            .setColor(await bot.findColour(message, bot.user))      
+            .setFooter(`Use help [command] for more info on each command.`);
 
         bot.commands.forEach(k =>
         {
-            if(k.help.type == "help") listHelp+=k.help.name + " "
-            if(k.help.type == "moderation") listMod+=k.help.name + " "
-            if(k.help.type == "roles") listRoles+=k.help.name + " "
-            if(k.help.type == "owner") listOwner+=k.help.name + " "
+            if(!k.help.type || k.help.type == '') return;
+            if(!cmds.has(k.help.type)) cmds.set(k.help.type, [])
+            cmds.get(k.help.type).push(k.help.name);
         });
 
-        let embed = new Discord.RichEmbed()
-        .setAuthor(`List of commands for ${bot.user.username}`, bot.user.avatarURL)
-        .setColor(await bot.findColour(message, bot.user))
-        .addField(`Moderation`, listMod)
-        .addField(`Roles`, listRoles)
-        .addField(`Help`, listHelp)        
-        .addField(`Owner`, listOwner)        
-        .setFooter(`Use help [command] for more info.`);
+        let keys = Array.from(cmds.keys());
+        keys.sort()
 
+        keys.forEach(e => {
+            commands = cmds.get(e);
+            embed.addField(e.capitalize(), commands.join(', '));
+        })
 
         message.channel.send(embed);
     };
@@ -60,4 +55,8 @@ exports.run = async (bot, message, args) => {
 exports.help = {
     name: "help",
     type: "help"
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }

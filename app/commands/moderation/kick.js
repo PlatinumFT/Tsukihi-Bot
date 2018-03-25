@@ -29,5 +29,9 @@ exports.help = {
 }
 
 exports.conf = {
-    aliases: [ 'k' ]
+    aliases: [ 'k' ],
+    permissions: 
+    [
+        'KICK_MEMBERS',
+    ]
 }

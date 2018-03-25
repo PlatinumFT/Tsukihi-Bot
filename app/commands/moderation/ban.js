@@ -1,25 +1,39 @@
 const Discord = module.require("discord.js");
 
-exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.sendMessage("You don't have permissions to ban!");
+exports.run = async (client, message, args) => {
+    if(!message.guild.members.get(client.user.id).hasPermission("BAN_MEMBERS")) return message.channel.send("I don't have permissions to ban!");
 
     let toBan = message.mentions.users.first() || message.guild.members.get(args[0]);
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "No reason specified";
     if(!toBan) return message.channel.send("You did not specify a user!")
     if(!toBan.id == message.author.id) return message.channel.send("You cannot ban yourself!");
-        try {
-            ban = await message.guild.member(toBan).ban();
 
-            let embed = new Discord.RichEmbed()
-            .setAuthor(`Banned`)
-            .setDescription(`Banned user ${toBan}.`)
-            .addField('ID', `${toBan.id}`)            
-            .setColor("#FF0000")
 
-            return message.channel.send(embed);
-        } catch(e) {
-            return message.channel.send('I cannot ban this user!');
-        }
+    let embed = new Discord.RichEmbed()
+    .setAuthor(`Banned user ${toBan.username}`)
+    .addField('ID', `${toBan.id}`)
+    .setColor("#FF0000")
+
+    let banEmbed = new Discord.RichEmbed()
+    .setAuthor(`You have been banned from ${message.guild.name}`)
+    .setColor("#FF0000")
+    .setDescription(`Reason: ${reason}`)
+    .setTimestamp();
+
+    try {
+        await toBan.send(banEmbed)
+    } catch(e) {
+        embed.setFooter(`No DM sent.`);
     }
+
+    try {
+        ban = await message.guild.member(toBan).ban();
+        await message.channel.send(embed);
+    } catch(e) {
+        await message.channel.send("I cannot ban this user!");
+    }
+}
     
 exports.help = {
         name: "ban",
@@ -29,5 +43,9 @@ exports.help = {
 }
 
 exports.conf = {
-    aliases: [ 'b' ]
+    aliases: [ 'b' ],
+    permissions: 
+    [
+        'BAN_MEMBERS',
+    ]
 }

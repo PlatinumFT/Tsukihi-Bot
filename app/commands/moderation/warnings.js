@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 const moment = require("moment");
 
 module.exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("You don't have the correct permissions to view warnings!");
-    
     let query = client.db;
     let embed = new Discord.RichEmbed()
                 .setAuthor(`Warnings for ${message.guild.name}`, message.guild.iconURL)
@@ -56,4 +54,11 @@ module.exports.help = {
     description: "",
     usage: "",
     type: ""
+}
+
+exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
 }

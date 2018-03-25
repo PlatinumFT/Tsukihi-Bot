@@ -1,7 +1,6 @@
 const Discord = module.require("discord.js");
 
 exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("You don't have permissions to ban!");
     if(!message.guild.members.get(client.user.id).hasPermission("BAN_MEMBERS")) return message.channel.send("I don't have permissions to ban!");
     if(args.length == 0) return message.channel.send("Please supply an ID!");
     
@@ -41,5 +40,9 @@ exports.help = {
 }
 
 exports.conf = {
-    aliases: [ 'hb' ]
+    aliases: [ 'hb' ],
+    permissions: 
+    [
+        'BAN_MEMBERS',
+    ]
 }

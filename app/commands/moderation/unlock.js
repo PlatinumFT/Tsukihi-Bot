@@ -17,3 +17,10 @@ exports.help = {
     usage: "unlock",
     type: "moderation"    
 }
+
+exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
+}

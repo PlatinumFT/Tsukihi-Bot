@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("You don't have the correct permissions to warn!");
-    
-    if(!args[0]) return message.channel.send("You did not specify a user!");
+       if(!args[0]) return message.channel.send("You did not specify a user!");
     target = await client.findUser(message, args[0]);
     if(!target) return message.channel.send("User not found!");
     let res = await client.db(`select * from warnings where guild_id = '${message.guild.id}' ORDER BY id desc`);
@@ -25,6 +23,14 @@ module.exports.help = {
     usage: "warn <user> [reason]",
     type: ""
 }
+
+exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
+}
+
 
 async function warnedEmbed(message, reason) {
     let embed = new Discord.RichEmbed()

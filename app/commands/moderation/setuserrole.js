@@ -50,3 +50,10 @@ module.exports.help = {
     usage: "setuserrole @Platinum [role]",
     type: "roles"    
 }
+
+module.exports.conf = {
+    permissions: 
+    [
+        'MANAGE_ROLES',
+    ]
+}
