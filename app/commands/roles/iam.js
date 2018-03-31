@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, db) => {
         if (myRole.id == "336786415407071233" || myRole.id == "206668607327961088" || myRole.id == "271875615064326146" || myRole.id == "322165288332165121" || myRole.id == "220998153044885505" || myRole.id == "338795067097743361" || myRole.id == "418555569670979584") {
         } else {
         for(i=0;i<numbRoles;i++) {
-            if (rows[i].role_id == "336786415407071233" || rows[i].role_id == "206668607327961088" || rows[i].role_id == "271875615064326146" || rows[i].role_id == "322165288332165121" || rows[i].role_id == "220998153044885505" || rows[i].role_id == "418555569670979584") {roleCount+=0} else {
+            if (rows[i].role_id == "336786415407071233" || rows[i].role_id == "206668607327961088" || rows[i].role_id == "271875615064326146" || rows[i].role_id == "322165288332165121" || rows[i].role_id == "220998153044885505" || rows[i].role_id == "418555569670979584" || rows[i].role_id == "338795067097743361") {roleCount+=0} else {
             let userRole = message.guild.roles.find("id", rows[i].role_id);
             if (message.member.roles.has(userRole.id)) {
                 roleCount+=1
