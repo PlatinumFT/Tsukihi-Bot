@@ -1,5 +1,4 @@
 exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("You don't have the correct permissions to prune!");
     if (args[0]) {
         if(isNaN(args[0])) return message.channel.send(`Please use a valid number!`);
         const fetched = await message.channel.fetchMessages({limit: args[0]});
@@ -12,8 +11,12 @@ exports.run = async (client, message, args) => {
             if (e.author.id == client.user.id) botMessages.push(e);
             else return;
         })
-        message.channel.bulkDelete(botMessages)
+        await message.channel.bulkDelete(botMessages)
             .catch(error => message.channel.send(`Error: ${error}`));
+
+        setTimeout(function() {
+            message.delete();
+        }, 10000);
     }
 }
 
