@@ -7,10 +7,10 @@ module.exports = async (cmd, message) => {
     ) return true;
 
     if (message.author.id == message.client.settings.owner_id) return true;
-    let mem = message.guild.members.get(message.author.id);
+    let mem = await message.guild.members.get(message.author.id);
     for(i=0; i<cmd.conf.permissions.length; i++) {
-        if (!mem.hasPermission(cmd.conf.permissions[i]), true) {
-            message.channel.send(embed(`You do not have the **${cmd.conf.permissions[i]}** permission!`));
+        if (!mem.hasPermission(cmd.conf.permissions[i])) {
+            await message.channel.send(embed(`You do not have the **${cmd.conf.permissions[i]}** permission!`));
             return false;
         }
     }
