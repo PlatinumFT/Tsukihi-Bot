@@ -11,8 +11,9 @@ exports.run = async (client, message, args) => {
 
 
     let embed = new Discord.RichEmbed()
-    .setAuthor(`Banned user ${toBan.username}`)
-    .addField('ID', `${toBan.id}`)
+    .setAuthor(`Banned user`)
+    .addField(`Name`, `${toBan.user.username}`, true)
+    .addField('ID', `${toBan.id}`, true)
     .setColor("#FF0000")
 
     let banEmbed = new Discord.RichEmbed()
