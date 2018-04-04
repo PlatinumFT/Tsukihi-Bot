@@ -100,7 +100,11 @@ module.exports.run = async (bot, message, args, db) => {
                     return message.channel.send(e.stack);
                 }
 
-                message.channel.send(embedSuccess(`${message.author.username}, you now have the ${myRole.name} role.`));                
+                let msg = await message.channel.send(embedSuccess(`${message.author.username}, you now have the ${myRole.name} role.`));
+
+                setTimeout(function() {
+                    await msg.delete();
+                }, 5000);
             }
     }
 }
