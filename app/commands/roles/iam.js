@@ -60,11 +60,11 @@ module.exports.run = async (bot, message, args, db) => {
         var numbRoles = rows.length;
 
             let roleCount=0;
-        if (myRole.id == "403074596711956491" || myRole.id == "412080053598289922"){
+        if (myRole.id == "403074596711956491" || myRole.id == "412080053598289922" || myRole.id == "431294268158640141" || myRole.id == "430150559421693962"){
 
         } else {
         for(i=0;i<numbRoles;i++) {
-            if (rows[i].role_id == "403074596711956491" || rows[i].role_id == "412080053598289922") {roleCount+=0} else {
+            if (rows[i].role_id == "403074596711956491" || rows[i].role_id == "412080053598289922" || rows[i].role_id == "431294268158640141" || rows[i].role_id == "430150559421693962") {roleCount+=0} else {
             let userRole = message.guild.roles.find("id", rows[i].role_id);
             if (message.member.roles.has(userRole.id)) {
                 roleCount+=1
