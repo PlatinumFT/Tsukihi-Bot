@@ -13,12 +13,8 @@ module.exports = client => {
             fs.readdir(`./app/commands/${f}/`, (err, jsf) => {
                 let jsfiles = jsf.filter(f => f.split(".").pop() === "js");
                 if(jsfiles.length <= 0 ) {
-                    console.log(`No commands found in ${f}`.red);
                     return;
                 }
-    
-                console.log(`Loading ${jsfiles.length} commands in ${f}!`.bold.yellow)
-    
                 jsfiles.forEach((j, k) => {
                     let props = require(`../commands/${f}/${j}`);
                     props.help.type = f;
