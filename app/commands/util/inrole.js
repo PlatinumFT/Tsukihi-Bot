@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
             embed = new Discord.RichEmbed()
                 .setAuthor(`List of users in role '${role.name}' - ${count}`)
                 .setColor(role.color)
-                .setDescription(`List of users can be found here: https://pastebin.com/${data}`)
+                .setDescription(`List of users can be found here: ${data}`)
                 .setTimestamp();
 
         return message.channel.send(embed);
