@@ -12,8 +12,6 @@ exports.run = async (bot, message, args) => {
 
 
     let helpme = args[0];
-    let guildMem = message.guild.members.get(bot.user.id);
-
     if (!helpme) {
         let cmds = new Map();
         let embed = new Discord.RichEmbed()
@@ -44,8 +42,8 @@ exports.run = async (bot, message, args) => {
 	let cmd = bot.commands.get(args[0]);
 
         let embed = new Discord.RichEmbed()
-        .setColor(guildMem.displayColor)
-        .addField(`${cmd.help.name}`, `${cmd.help.description}`)
+        .setColor((await bot.findColour(message, bot.user)))
+        .addField(`Help: ${cmd.help.name}`, `${cmd.help.description}`)
         .setFooter(`Usage: ${cmd.help.usage}`);
 
         message.channel.send(embed);
@@ -54,7 +52,8 @@ exports.run = async (bot, message, args) => {
 
 exports.help = {
     name: "help",
-    type: "help"
+    type: "help",
+    dmCommand: true
 }
 
 String.prototype.capitalize = function() {

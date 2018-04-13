@@ -21,7 +21,8 @@ exports.run = async (client, message, args) => {
 exports.help = {
     name: "avatar",
     description: "Checks avatar",
-    usage: "avatar @Platinum"
+    usage: "avatar @Platinum",
+    dmCommand: true
 }
 
 exports.conf = {

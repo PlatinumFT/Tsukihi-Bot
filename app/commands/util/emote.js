@@ -26,7 +26,8 @@ exports.help = {
     name: "emote",
     description: "Shows a full resolution image of a specified emote.",
     usage: "emote [emote name]",
-    type: "utility"
+    type: "utility",
+    dmCommand: true
 }
 
 exports.conf = {

@@ -7,7 +7,8 @@ module.exports.help = {
     name: "invite",
     description: `Sends an invite, to add the bot to your server.`,
     usage: "invite",
-    type: "help"
+    type: "help",
+    dmCommand: true
 }
 
 module.exports.conf = {

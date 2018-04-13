@@ -16,13 +16,12 @@ module.exports.run = async (client, message, args) => {
 
     let roles = "";
     let count = 0;        
-    let guildMem = message.guild.members.get(target.id);
 
     owners = client.settings.owner_id;
 
     let embed = new Discord.RichEmbed()
-        .setAuthor(`${target.username} by Platinum#00`, target.displayAvatarURL)
-        .setColor(guildMem.displayColor)
+        .setAuthor(`${target.username} by Platinum#0001`, target.displayAvatarURL)
+        .setColor((await client.findColour(message, target)))
         .setThumbnail(target.displayAvatarURL)
         .setDescription(`Serving ${client.users.size} users in ${client.guilds.size} guilds.`)
         .addField('Ram usage', `${(os.freemem()/1048576).toFixed(0)}MB`, true)
@@ -35,5 +34,6 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "status",
     description: "Checks bot info",
-    usage: "help"
+    usage: "help",
+    dmCommand: true
 }

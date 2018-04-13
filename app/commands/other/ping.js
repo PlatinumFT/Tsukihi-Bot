@@ -8,7 +8,8 @@ exports.help = {
     name: "ping",
     description: "Checks ping. HELLO RETARD",
     usage: "ping",
-    type: "help"    
+    type: "help",
+    dmCommand: true
 }
 exports.conf = {
     aliases: ['p'],

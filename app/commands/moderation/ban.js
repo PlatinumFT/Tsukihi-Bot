@@ -3,7 +3,7 @@ const Discord = module.require("discord.js");
 exports.run = async (client, message, args) => {
     if(!message.guild.members.get(client.user.id).hasPermission("BAN_MEMBERS")) return message.channel.send("I don't have permissions to ban!");
 
-    let toBan = message.mentions.users.first() || message.guild.members.get(args[0]);
+    let toBan = client.users.get(args[0]) || message.mentions.users.first();
     let reason = args.slice(1).join(' ');
     if(!reason) reason = "No reason specified";
     if(!toBan) return message.channel.send("You did not specify a user!")
@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
 
     let embed = new Discord.RichEmbed()
     .setAuthor(`Banned user`)
-    .addField(`Name`, `${toBan.user.username}`, true)
+    .addField(`Name`, `${toBan.username}`, true)
     .addField('ID', `${toBan.id}`, true)
     .setColor("#FF0000")
 
@@ -50,3 +50,5 @@ exports.conf = {
         'BAN_MEMBERS',
     ]
 }
+
+Math.floor(Math.random() * 6) + 1

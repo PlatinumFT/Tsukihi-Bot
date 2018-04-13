@@ -1,0 +1,17 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  
+.container-fluid {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  
+  .footer {
+    background: #0b2938;
+    color: black;
+    height: 50px;
+    margin-top: -50px;
+  }

@@ -45,5 +45,6 @@ module.exports.help = {
     name: "osutop",
     description: "Checks a users top 5 plays.",
     usage: "osutop platinumft",
-    type: "games"
+    type: "games",
+    dmCommand: true
 }

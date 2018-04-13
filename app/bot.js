@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const express = require('express');
+var path = require('path');
 
 const client = new Discord.Client({disableEveryone: true});
       client.db = require('./pgsql.js');
@@ -7,6 +9,12 @@ const client = new Discord.Client({disableEveryone: true});
       client.xp = {};
       client.globalxp = {};
 module.exports = {
+    run: async function() {
+        await funcs.run();
+    }
+}
+
+funcs = {
     run: async function() {
         let query = client.db;
 
@@ -18,6 +26,62 @@ module.exports = {
 
         require('./util/eventLoader')(client);
         await client.login(res[0].token);
+
+        funcs.webapp();
+    },
+
+    webapp: async function() {
+        let app = express();
+
+        app.use(express.static(path.join(__dirname, 'webapp/public')));
+        app.use(express.static(path.join(__dirname, '../bower_components')));
+
+        app.set('views', path.join(__dirname, 'webapp/views'));
+        app.set('view engine', 'ejs');
+
+        app.get('/user_roles/:id', async function(req, res) {
+            let id = req.params.id;
+            let result = await client.db(`select * from user_roles where user_id = '${id}'`);
+            res.send(result);
+        });
+
+        app.get('/guild/:id', async function(req, res) {
+            let id = req.params.id;
+            let result = await client.guilds.get(id);
+            let r = {
+                guild: result,
+                icon: result.iconURL
+            }
+
+            if(result) res.send(r)
+            else res.send(null);
+        })
+
+        app.get('/role/:guild_id/:role_id', async function(req, res) {
+            let guild_id = req.params.guild_id;
+            let role_id = req.params.role_id;
+
+            let guild = await client.guilds.get(guild_id);
+            let role = await guild.roles.get(role_id);
+
+            let r = {
+                guild: guild,
+                role: role,
+                icon: guild.iconURL
+            }
+
+            if(guild) res.send(r)
+            else res.send(null);
+        })
+
+
+
+
+        app.get('/', function(req, res) {
+            res.render('index');
+        })
+
+        app.listen(3000, (req, res) => console.log('Started!'))
     },
 
     migration: async function() {
