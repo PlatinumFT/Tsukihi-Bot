@@ -74,8 +74,14 @@ funcs = {
             else res.send(null);
         })
 
+        app.get('/command_log', async function(req, res) {
+            let result = await client.db(`select * from command_log`);
+            if(result) res.send(result)
+        })
 
-
+        app.get('/dashboard', function(req, res) {
+            res.render('dashboard');
+        })
 
         app.get('/', function(req, res) {
             res.render('index');

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<% include header %>
+	</head>
+	<body>		
+        <% include navbar %>
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="pull-right"><span class="glyphicon glyphicon-chevron-down"></span></span>
+                    <h2>
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        Used commands <br/>
+                        <small>Commands used.</small>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive col-sm-12">
+                        <table id="commandLogTable" class="table table-bordered table-hover table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>ID</th>
+                                    <th>Command Used</th>
+                                    <th>Args</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="pull-right"><span class="glyphicon glyphicon-chevron-down"></span></span>
+                    <h2><span class="glyphicon glyphicon-list-alt"></span>
+                        Feedback <br/>
+                        <small>Feedback via the feedback command.</small>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive col-sm-12">
+                        <table id="feedbackTable" class="table table-bordered table-hover table-striped" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>ID</th>
+                                    <th>Feedback</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <% include footer %>
+
+        <script src="/js/app.js"></script>
+	</body>
+</html>

@@ -9,23 +9,34 @@ app = {
 
     loadUser: function() {
         $.get({
-            url: '/user_roles/166995790416314370'
+            url: '/command_log'
         }).done(function(data) {
             app.onLoadUser(data);
         })
     },
 
     onLoadUser: function(data) {
-        data.forEach(e => {
-            $.get({
-                url: `/role/${e.guild_id}/${e.role_id}`
-            }).done(function(data2) {
-            let templ = $('#guildTemplate').clone();
-            templ.show();
-            templ.find('#pic').attr('src', data2.icon);
-            templ.find('#name').html(`<p>Server - ${data2.guild.name}</p>\nRole - ${data2.role.name} (${data2.role.color})`);
-            templ.appendTo($('#mainPage'));
-            })
-        })
+        $('#commandLogTable').DataTable({
+            searching: false,
+            bDestroy: true,
+            paging: false,
+            order: [[0, 'desc']],
+            lengthMenu: [[-1, 10, 25, 50, 100], ['All', 10, 25, 50, 100]],
+            data: data,
+            columnDefs: [{ targets: [0, 1, 2, 3, 4], className: 'text-left' }],
+            columns: [
+                { data: 'user_name' },
+                { data: 'user_id' },
+                { data: 'command' },
+                { data: 'args' },
+                { 
+                    data: 'date',
+                    render: function(data) {
+                        console.log(data);
+                        return new Date(data);
+                    }
+                 }
+            ]
+        });
     }
 }

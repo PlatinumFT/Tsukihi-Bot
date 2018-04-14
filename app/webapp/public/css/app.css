@@ -1,17 +1,135 @@
 body {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
+  padding-top: 90px;
+  padding-bottom: 50px;
+  padding-left: 140px;
+}
 
-  
-.container-fluid {
-    padding-left: 100px;
-    padding-right: 100px;
-  }
-  
-  .footer {
-    background: #0b2938;
-    color: black;
-    height: 50px;
-    margin-top: -50px;
-  }
+.footer {
+	background: #1a335b;
+	color: black;
+	height: 50px;
+	margin-top: -50px;
+}
+
+.forgot-password {
+	text-align: right;
+}
+
+.navbar-fixed-left {
+  width: 140px;
+  background: #362F2F;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+}
+
+.navbar-fixed-top {
+  background: #1a335b;
+  position: fixed;
+  border-radius: 0;
+}
+
+.navbar-nav {
+  margin-left: -15px;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  /* Cancel default li float: left */
+  text-align: right;
+  width: 139px;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 50px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 140px;
+}
+
+.navbar-fixed-left {
+  left: 0;
+  top: 0;
+  padding-top: 75px;
+}
+
+.navbar-fixed-left a {
+  color: #FFFFFF;
+}
+
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+  background-color: #4D4444;
+  color: #FFFFFF;
+}
+
+.navbar-nav .active {
+  background-color: #4D4444;
+  color: #FFFFFF;
+}
+
+.myprofile {
+  padding-top: 10px;
+}
+
+.panel .panel-heading {
+  background-image: none;
+  background-color: #FFFFFF;
+}
+
+.panel-body {
+  padding:30px;  
+}
+
+.glyphicon-list-alt {
+  color: #15700D
+}
+
+.glyphicon-question-sign {
+  color: #15700D
+}
+
+.glyphicon-th-list {
+  color: #15700D
+}
+
+.glyphicon-chevron-down {
+  color: #000000;
+  font-size: 15px;
+}
+
+.btn-primary {
+  background-image: none;
+  background-color: #330066;
+}
+
+.btn-secondary {
+  background-image: none;
+  color: #686868;
+  background-color: #FFFFFF;
+}
+
+.btn-secondary.active {
+  background-image: none;
+  color: #FFFFFF;
+  background-color: #362F2F;
+}
+
+.btn-red {
+  background-color: #DB1111;
+  color: #FFFFFF;
+}
+
+label.required:after {
+	content: " *";
+	color: red;
+}
+
+select.error, textarea.error, input.error, div.mce-tinymce.mce-container.mce-panel.error {
+  box-shadow: 0 0 5px #CC0000;
+}
+
+.select2 {
+  width:100%!important;
+}

@@ -1,9 +1,25 @@
 <!doctype html>
 <nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">
+			<!-- <a href ="/"><img  src="/images/SQNLogo512-150x150.png" height = "70px"/></a> -->
+		</a>
 	
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown myprofile">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Test.<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li ><a href="/logout">Profile</a></li>
+							<li ><a href="/logout">Logout</a></li>
+						</ul>
+				</li>
+			</ul>
+	</div>
+</nav>
+
+<nav class="navbar navbar-fixed-left">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 				aria-controls="navbar">
@@ -11,23 +27,13 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">
-				
-			</a>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
+		<div id="navbar" class="collapsible">
 				<ul class="nav navbar-nav">
-			    		<li><a href ="/">Myrole</a></li>	
-				</ul>
-				<ul class="nav navbar-nav pull-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li ><a href="/profile">Profile</a></li>
-								<li ><a href="/logout">Logout</a></li>
-							</ul>
-					</li>
-				</ul>
+					<!-- Page redirects -->
+					<li><a class="text-left" href="/dashboard"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
+					<li><a class="text-left" href="/questionnaire"><span class="glyphicon glyphicon-calendar"></span> Some shit idk yet</a></li>
+				</ul>			
 		</div>
 		<!--/.nav-collapse -->
 	</div>
