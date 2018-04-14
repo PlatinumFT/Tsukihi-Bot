@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require('moment');
 
 module.exports = async message => {
 
@@ -43,7 +44,10 @@ module.exports = async message => {
     
         if ((cmd.help.type == "owner" && !isOwner)) return;
         let bool = await require('../util/permsChecker.js')(cmd, message);
-        if(bool) cmd.run(client, message, args);
+        if(bool) {
+            await query(`insert into command_log values('${message.author.username}',${message.author.id}, '${cmd.help.name}', '${message.content}', '${new Date().toUTCString()}')`)
+            cmd.run(client, message, args)
+        };
     }
 };
 
