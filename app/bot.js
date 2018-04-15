@@ -84,7 +84,7 @@ funcs = {
                     result[i].channel = await result[i].guild.channels.get(result[i].channel_id);
                 }
             }
-            if(result) res.send(result)
+            if(result) res.send(JSON.stringify(result));
         })
 
         app.get('/dashboard', function(req, res) {
