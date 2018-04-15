@@ -78,18 +78,13 @@ funcs = {
             let result = await client.db(`select * from command_log`);
             let d = [];
             for(i=0; i<result.length;i++) {
-                let guild;
                 let channel;
-                if(result[i].guild_id) {
-                    guild = result[i].guild = await client.guilds.get(result[i].guild_id);
-                }
                 if(result[i].channel_id) {
                     channel = await client.guilds.get(result[i].guild_id).channels.get(result[i].channel_id);
                 }
 
                 d.push({
                     data: result[i],
-                    guild: guild,
                     channel: channel
                 })
             }

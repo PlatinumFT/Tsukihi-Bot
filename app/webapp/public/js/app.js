@@ -29,10 +29,10 @@ app = {
                 { data: 'data.user_name' },
                 { data: 'data.user_id' },
                 { 
-                    data: 'guild',
+                    data: 'channel',
                     render: function(data) {
                         if(!data) return "";
-                        else return `<a href="#" data-toggle="tooltip" title="${data.id}" class="tooltipID">${data.name}</a>`
+                        else return `<a href="#" data-toggle="tooltip" title="${data.guild.id}" class="tooltipID">${data.guild.name}</a>`
                     }
                 },
                 { 
