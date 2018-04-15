@@ -45,7 +45,7 @@ module.exports = async message => {
         if ((cmd.help.type == "owner" && !isOwner)) return;
         let bool = await require('../util/permsChecker.js')(cmd, message);
         if(bool) {
-            await query(`insert into command_log values('${message.author.username}',${message.author.id}, '${cmd.help.name}', '${message.content}', '${new Date().toUTCString()}')`)
+            await query(`insert into command_log values('${message.author.username}#${message.author.discriminator}',${message.author.id}, '${cmd.help.name}', '${message.content}', '${new Date().toUTCString()}', '${message.guild.id}', '${message.channel.id}')`)
             cmd.run(client, message, args)
         };
     }

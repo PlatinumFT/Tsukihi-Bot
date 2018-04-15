@@ -27,12 +27,13 @@ app = {
             columns: [
                 { data: 'user_name' },
                 { data: 'user_id' },
+                { data: 'guild_id' },
+                { data: 'channel_id' },
                 { data: 'command' },
                 { data: 'args' },
                 { 
                     data: 'date',
                     render: function(data) {
-                        console.log(data);
                         return new Date(data);
                     }
                  }
