@@ -81,7 +81,7 @@ funcs = {
                     result[i].guild = await client.guilds.get(result[i].guild_id);
                 }
                 if(result[i].channel_id) {
-                    result[i].channel = await result[i].guild.channels.get(result[i].channel_id);
+                    result[i].channel = await client.guilds.get(result[i].guild_id).channels.get(result[i].channel_id);
                 }
             }
             if(result) res.send(JSON.stringify(result));
