@@ -76,6 +76,14 @@ funcs = {
 
         app.get('/command_log', async function(req, res) {
             let result = await client.db(`select * from command_log`);
+            for(i=0; i<result.length;i++) {
+                if(result[i].guild_id) {
+                    result[i].guild = await client.guilds.get(result[i].guild_id);
+                }
+                if(result[i].channel_id) {
+                    result[i].channel = await result[i].guild.channels.get(result[i].channel_id);
+                }
+            }
             if(result) res.send(result)
         })
 

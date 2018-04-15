@@ -16,6 +16,7 @@ app = {
     },
 
     onLoadUser: function(data) {
+        console.log(data);
         $('#commandLogTable').DataTable({
             searching: false,
             bDestroy: true,
@@ -27,8 +28,20 @@ app = {
             columns: [
                 { data: 'user_name' },
                 { data: 'user_id' },
-                { data: 'guild_id' },
-                { data: 'channel_id' },
+                { 
+                    data: 'guild',
+                    render: function(data) {
+                        if(!data) return "";
+                        else return `<a href="#" data-toggle="tooltip" title="${data.id}" class="tooltipID">${data.name}</a>`
+                    }
+                },
+                { 
+                    data: 'channel',
+                    render: function(data) {
+                        if(!data) return "";
+                        else return `<a href="#" data-toggle="tooltip" title="${data.id}" class="tooltipID">${data.name}</a>`
+                    }
+                },
                 { data: 'command' },
                 { data: 'args' },
                 { 
@@ -37,7 +50,10 @@ app = {
                         return new Date(data);
                     }
                  }
-            ]
+            ],
+            initComplete: function() {
+                $('.tooltipID').tooltip();
+            }
         });
     }
 }
