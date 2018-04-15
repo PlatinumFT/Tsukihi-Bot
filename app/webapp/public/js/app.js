@@ -19,7 +19,7 @@ app = {
         $('#commandLogTable').DataTable({
             searching: false,
             bDestroy: true,
-            paging: false,
+            paging: true,
             order: [[6, 'desc']],
             lengthMenu: [[-1, 10, 25, 50, 100], ['All', 10, 25, 50, 100]],
             data: data,
