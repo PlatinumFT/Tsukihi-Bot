@@ -26,8 +26,8 @@ app = {
             data: data,
             columnDefs: [{ targets: [0, 1, 2, 3, 4], className: 'text-left' }],
             columns: [
-                { data: 'user_name' },
-                { data: 'user_id' },
+                { data: 'data.user_name' },
+                { data: 'data.user_id' },
                 { 
                     data: 'guild',
                     render: function(data) {
@@ -42,10 +42,10 @@ app = {
                         else return `<a href="#" data-toggle="tooltip" title="${data.id}" class="tooltipID">${data.name}</a>`
                     }
                 },
-                { data: 'command' },
-                { data: 'args' },
+                { data: 'data.command' },
+                { data: 'data.args' },
                 { 
-                    data: 'date',
+                    data: 'data.date',
                     render: function(data) {
                         return new Date(data);
                     }
