@@ -80,7 +80,8 @@ funcs = {
             for(i=0; i<result.length;i++) {
                 let channel;
                 if(result[i].channel_id) {
-                    channel = await client.guilds.get(result[i].guild_id).channels.get(result[i].channel_id);
+                    let guild = await client.guilds.get(result[i].guild_id)
+                    channel = await guild.channels.get(result[i].channel_id);
                 }
 
                 d.push({
