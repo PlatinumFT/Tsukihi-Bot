@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
     }
 
     try {
-        ban = await message.guild.member(toBan).ban();
+        ban = await message.guild.member(toBan).ban({ days: 7, reason: reason});
         await message.channel.send(embed);
     } catch(e) {
         await message.channel.send("I cannot ban this user!");
