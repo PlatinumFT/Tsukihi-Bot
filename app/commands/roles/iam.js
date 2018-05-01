@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args, db) => {
 
     if (!args[0]) return;
     let myRole = message.guild.roles.find(val => val.name.toLowerCase() === rolejoin.toLowerCase());
-    if(!myRole) return message.channel.send(embedFail("This role does not exist!"));
+    if(!myRole) return message.channel.send(embedFail(`${message.author.username}, This role does not exist!`));
     minorRole = message.guild.roles.get("298702403220537344");
 
     //Araragi Hard Code
@@ -68,7 +68,7 @@ module.exports.run = async (bot, message, args, db) => {
             let userRole = message.guild.roles.find("id", rows[i].role_id);
             if (message.member.roles.has(userRole.id)) {
                 roleCount+=1
-                if(!myRole.id === rows[i].role_id) return message.channel.send(embedFail("This is not an assignable role!"));
+                if(!myRole.id === rows[i].role_id) return message.channel.send(embedFail(`${message.author.username}, This is not an assignable role!`));
             }
         }
         }
@@ -89,10 +89,10 @@ module.exports.run = async (bot, message, args, db) => {
         return;
         } else if(res[0]) {
                 if(message.guild.id == "204487943568621568") {
-                    if(roleCount>=2) return message.channel.send(embedFail("You already have 2 character roles!"));                              
+                    if(roleCount>=2) return message.channel.send(embedFail(`${message.author.username}, You already have 2 character roles!`));                              
                 }
                 if(message.guild.id == "403050328536121354") {
-                    if(roleCount>=2) return message.channel.send(embedFail("You already have 2 roles!"));                              
+                    if(roleCount>=2) return message.channel.send(embedFail(`${message.author.username}, You already have 2 roles!`));
                 }
                 try {
                 message.guild.member(message.author).addRole(myRole, "Self assigned role.");
