@@ -2,14 +2,14 @@ const Discord = module.require("discord.js");
 const Nodesu = require("nodesu");
 
 module.exports.run = async (client, message, args) => {
-    let res = await client.db(`SELECT osu_key FROM SETTINGS`);
-    if(!res[0]) return message.channel.send(`There is no osu api key set!`);
-    let apiKey = res[0].osu_key;
+    let apiKey = client.settings.osu_key;
     const osu = await new Nodesu.Client(apiKey);
 
     let text = args.slice(0).join(' ');
+    if(!text) return await message.channel.send(`Please specify a username!`);
 
     let user = await osu.user.get(text);
+    if(!user) return await message.channel.send(`User not found.`);
     let g = await osu.user.getBest(text, 0, 5);
     str="";
 

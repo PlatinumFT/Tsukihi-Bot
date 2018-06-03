@@ -1,25 +1,40 @@
 const Discord = module.require("discord.js");
 
-exports.run = async (bot, message, args) => {
-        if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.sendMessage("You don't have permissions to kick!");
-        
-        let toKick = message.mentions.users.first() || message.guild.members.get(args[0]);
-        if(!toKick) return message.channel.send("You did not specify a user!")
-        if(!toKick.id == message.author.id) return message.channel.send("You cannot kick yourself!");
-        try {
-            kick = await message.guild.member(toKick).kick();
+exports.run = async (client, message, args) => {
+    if(!message.guild.members.get(client.user.id).hasPermission("KICK_MEMBERS")) return message.channel.send("I don't have permissions to kick!");
 
-            let embed = new Discord.RichEmbed()
-            .setAuthor(`Kicked`)
-            .setDescription(`Kicked user ${toKick}.`)
-            .addField('ID', `${toKick.id}`)
-            .setColor("#FFFF00");
+    let toBan = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    let reason = args.slice(1).join(' ');
+    if(!reason) reason = "No reason specified";
+    if(!toBan) return message.channel.send("You did not specify a user!")
+    if(!toBan.id == message.author.id) return message.channel.send("You cannot kick yourself!");
+    if(toBan.highestRole.position >= message.member.highestRole.position) return message.channel.send('You cannot kick a member who has a higher or the same role as you!')
 
-            return message.channel.send(embed);
-        } catch(e) {
-            message.channel.send('I cannot kick this user!');
-        }
+    let embed = new Discord.RichEmbed()
+    .setAuthor(`Kicked user`)
+    .addField(`Name`, `${toBan.user.username}`, true)
+    .addField('ID', `${toBan.id}`, true)
+    .setColor("#FF0000")
+
+    let banEmbed = new Discord.RichEmbed()
+    .setAuthor(`You have been kicked from ${message.guild.name}`)
+    .setColor("#FF0000")
+    .setDescription(`Reason: ${reason}`)
+    .setTimestamp();
+
+    try {
+        await toBan.send(banEmbed)
+    } catch(e) {
+        embed.setFooter(`No DM sent.`);
     }
+
+    try {
+        ban = await message.guild.member(toBan).kick({reason: reason});
+        await message.channel.send(embed);
+    } catch(e) {
+        await message.channel.send("I cannot ban this user!");
+    }
+}
 
 exports.help = {
     name: "kick",
